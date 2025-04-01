@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0  # Sử dụng MySQL phiên bản 8.0
+    container_name: my-mysql
+    restart: always  # Tự động khởi động lại nếu gặp lỗi
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword  # Mật khẩu cho user root
+      MYSQL_DATABASE: mydb  # Tạo database tên mydb
+      MYSQL_USER: user  # Tạo user mới
+      MYSQL_PASSWORD: password  # Mật khẩu cho user mới
+    ports:
+      - "3306:3306"  # Map cổng 3306 trên máy host với container
+    volumes:
+      - mysql_data:/var/lib/mysql  # Lưu trữ dữ liệu để không bị mất
+
+volumes:
+  mysql_data:  # Định nghĩa volume để lưu trữ dữ liệu MySQL
